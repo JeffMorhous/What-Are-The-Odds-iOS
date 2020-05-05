@@ -13,6 +13,10 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     // MARK: UI Elements
     let callToActionButton = WOButton(backgroundColor: .systemRed, title: "Go!")
     let horizontalStack = UIStackView()
+    let oddsPicker = UIPickerView()
+    
+    // MARK: Class Properties
+    var selectedOdds: Int = 2
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
@@ -49,7 +53,6 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     fileprivate func configureOddsPicker() {
-        let oddsPicker = UIPickerView()
         oddsPicker.dataSource = self
         oddsPicker.delegate = self
         horizontalStack.addArrangedSubview(oddsPicker)
@@ -76,10 +79,10 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     // MARK: UI Event Handlers
     @objc func pushResultsVC() {
         print("button pressed")
-//        let followerListVC = FollowerListVC()
-//        followerListVC.username = usernameTextField.text
-//        followerListVC.title = usernameTextField.text
-//        navigationController?.pushViewController(followerListVC, animated: true)
+        let resultsVC = ResultsVC()
+        resultsVC.selectedOdds = self.selectedOdds + 2
+        self.present(resultsVC, animated: true, completion: nil)
+//        navigationController?.pushViewController(resultsVC, animated: true)
     }
     
     // MARK: Picker Delegate Methods
@@ -88,12 +91,16 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 100
+        return 101
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let rowTitle = row + 1
+        let rowTitle = row + 2
         return "\(rowTitle)"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedOdds = row
     }
 
 }
