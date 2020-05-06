@@ -14,7 +14,7 @@ class ResultsVC: UIViewController {
     let titleLabel = UILabel()
     let userNumberLabel = UILabel()
     let computerNumberLabel = UILabel()
-    let horizontalStack = UIStackView()
+    let resultNumberStack = UIStackView()
     let resultLabel = UILabel()
     
     // Class Properties
@@ -30,7 +30,6 @@ class ResultsVC: UIViewController {
         // Show a  label with "1 in \(odds)"
         configureTitleLabel()
         playGame()
-        // TODO: Add same odds and half odds buttons
     }
     
     // MARK: UI Configuration
@@ -51,24 +50,24 @@ class ResultsVC: UIViewController {
     }
     
     private func configureResultNumbers(userNumber: Int, computerNumber: Int) {
-        view.addSubview(horizontalStack)
-        horizontalStack.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStack.axis = .horizontal
-        horizontalStack.alignment = .center // .Leading .FirstBaseline .Center .Trailing .LastBaseline
-        horizontalStack.distribution = .equalCentering // .FillEqually .FillProportionally .EqualSpacing .EqualCentering
+        view.addSubview(resultNumberStack)
+        resultNumberStack.translatesAutoresizingMaskIntoConstraints = false
+        resultNumberStack.axis = .horizontal
+        resultNumberStack.alignment = .center // .Leading .FirstBaseline .Center .Trailing .LastBaseline
+        resultNumberStack.distribution = .equalCentering // .FillEqually .FillProportionally .EqualSpacing .EqualCentering
         
         NSLayoutConstraint.activate([
-           horizontalStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
-           horizontalStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -100),
-           horizontalStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-           horizontalStack.heightAnchor.constraint(equalToConstant: 200)
+           resultNumberStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
+           resultNumberStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -100),
+           resultNumberStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+           resultNumberStack.heightAnchor.constraint(equalToConstant: 200)
         ])
         
-        horizontalStack.addArrangedSubview(userNumberLabel)
+        resultNumberStack.addArrangedSubview(userNumberLabel)
         userNumberLabel.text = "\(userNumber)"
         userNumberLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         
-        horizontalStack.addArrangedSubview(computerNumberLabel)
+        resultNumberStack.addArrangedSubview(computerNumberLabel)
         computerNumberLabel.text = "\(computerNumber)"
         computerNumberLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
     }
