@@ -80,14 +80,19 @@ class ResultsVC: UIViewController {
         } else {
             resultLabel.text = "The numbers are different, and you're safe!"
         }
+        resultLabel.lineBreakMode = .byWordWrapping
+        resultLabel.numberOfLines = 2
+        resultLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        resultLabel.textAlignment = .center
+        
         view.addSubview(resultLabel)
         resultLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            resultLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            resultLabel.heightAnchor.constraint(equalToConstant: 50)
+            resultLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            resultLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     
