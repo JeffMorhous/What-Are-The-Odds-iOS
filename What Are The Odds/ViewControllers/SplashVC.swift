@@ -16,7 +16,7 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     let oddsPicker = UIPickerView()
     
     // MARK: Class Properties
-    var selectedOdds: Int = 2
+    var selectedOdds: Int = 0
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
