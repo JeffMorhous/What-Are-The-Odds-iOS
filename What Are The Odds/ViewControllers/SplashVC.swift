@@ -12,6 +12,7 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     // MARK: UI Elements
     let callToActionButton = WOButton(backgroundColor: .systemRed, title: "Go!")
+    let helpButton = WOButton(backgroundColor: .systemBlue, title: "How To Play")
     let horizontalStack = UIStackView()
     let oddsPicker = UIPickerView()
     
@@ -28,35 +29,52 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
         configureCallToActionButton()
+        configureHelpButton()
         configureHorizontalStack()
     }
     
     // MARK: UI Configuration
+    private func configureHelpButton() {
+        view.addSubview(helpButton)
+        helpButton.addTarget(self, action: #selector(pushHelpVC), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            helpButton.bottomAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -20),
+            helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+            helpButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    
     private func configureCallToActionButton(){
         view.addSubview(callToActionButton)
         callToActionButton.addTarget(self, action: #selector(pushResultsVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
+
     fileprivate func configurePickerLabel() {
         let label = UILabel(frame: .zero)
-        label.text = "1 in : "
+        label.text = "1 : "
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         horizontalStack.addArrangedSubview(label)
     }
+    
     
     fileprivate func configureOddsPicker() {
         oddsPicker.dataSource = self
         oddsPicker.delegate = self
         horizontalStack.addArrangedSubview(oddsPicker)
     }
+    
     
     private func configureHorizontalStack() {
         view.addSubview(horizontalStack)
@@ -76,7 +94,13 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         configureOddsPicker()
     }
     
+    
     // MARK: UI Event Handlers
+    @objc func pushHelpVC() {
+        print("help button pressed")
+    }
+        
+    
     @objc func pushResultsVC() {
         print("button pressed")
         let resultsVC = ResultsVC()
@@ -84,6 +108,7 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         self.present(resultsVC, animated: true, completion: nil)
 //        navigationController?.pushViewController(resultsVC, animated: true)
     }
+    
     
     // MARK: Picker Delegate Methods
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
