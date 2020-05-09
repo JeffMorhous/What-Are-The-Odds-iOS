@@ -25,7 +25,6 @@ class ResultsVC: UIViewController {
 
         //Custom programmatic UI
         view.backgroundColor = .systemBackground
-        self.title = "What Are The Odds?"
         navigationController?.isNavigationBarHidden = true
         // Show a  label with "1 in \(odds)"
         configureTitleLabel()

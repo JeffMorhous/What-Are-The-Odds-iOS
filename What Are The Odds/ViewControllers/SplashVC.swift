@@ -97,12 +97,12 @@ class SplashVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: UI Event Handlers
     @objc func pushHelpVC() {
-        print("help button pressed")
+        let explainGameVC = ExplainGameVC()
+        self.present(explainGameVC, animated: true, completion: nil)
     }
         
     
     @objc func pushResultsVC() {
-        print("button pressed")
         let resultsVC = ResultsVC()
         resultsVC.selectedOdds = self.selectedOdds + 2
         self.present(resultsVC, animated: true, completion: nil)
