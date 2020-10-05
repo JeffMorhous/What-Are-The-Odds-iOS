@@ -2,6 +2,9 @@
 
 > What are the odds is a fun game where one person dares another to do something, asking what the odds are that they'll do it. This app then generates 2 random numbers between 1 and the chosen number. If the numbers are the same, the person must do the dare!
 
+## Quick Demo
+<img src="DemoGif.gif" height="400">
+
 ## Requirements
 
 -   Swift 5
